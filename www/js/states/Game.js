@@ -2,7 +2,6 @@ Game = function(){}
 
 Game.prototype = {
     init:function(){
-        this.index = this.game.rnd.integerInRange(0, 9);
         this.game.stage.backgroundColor = '#FFFFFF';
         this.score = 20;
     },
@@ -19,9 +18,10 @@ Game.prototype = {
         this.lowerbtn.inputEnabled = true;
         this.lowerbtn.events.onInputDown.add(this.lowerAction,this);
 
-        this.old_number = this.game.add.sprite(200, 200,'numbers',this.index);
-        this.indexOld = this.index;
-        this.old_number.anchor.setTo(0.5);
+        
+        this.indexOld = this.game.rnd.integerInRange(0, 9);
+        this.old_number = new NumberSprite(this.game,200,200,this.indexOld);
+        console.log("xdd ",this.old_number);
     },
     update:function(){
         if(this.score <= 0){
@@ -29,8 +29,8 @@ Game.prototype = {
         }
     },
     tweenAction(){
-        this.new_number = this.game.add.sprite(400, 200,'numbers',this.indexCurrent);
-        this.new_number.anchor.setTo(0.5);
+        this.new_number = new NumberSprite(this.game,400,200,this.indexCurrent);
+
         this.tween = this.game.add.tween(this.old_number);
         this.tween.to({ x: [100], y: [200] }, 300, "Linear");
         this.tween.start();
