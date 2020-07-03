@@ -20,9 +20,6 @@ Game.prototype = {
 
         
         this.indexOld = this.game.rnd.integerInRange(0, 9);
-        // this.old_number = this.game.add.sprite(200, 200,'numbers',this.indexOld);
-        // this.old_number.anchor.setTo(0.5);
-        
         this.old_number = new NumberSprite(this.game,200,200,this.indexOld);
         console.log("xdd ",this.old_number);
     },
@@ -32,17 +29,15 @@ Game.prototype = {
         }
     },
     tweenAction(){
-        // this.new_number = this.game.add.sprite(400, 200,'numbers',this.indexCurrent);
-        // this.new_number.anchor.setTo(0.5);
         this.new_number = new NumberSprite(this.game,400,200,this.indexCurrent);
-
-        this.tween = this.game.add.tween(this.old_number);
-        this.tween.to({ x: [100], y: [200] }, 300, "Linear");
-        this.tween.start();
-
-        this.tween2 = this.game.add.tween(this.new_number);
-        this.tween2.to({ x: [200], y: [200] }, 300, "Linear");
-        this.tween2.start();
+        this.old_number.Tween(100,200,300);
+        // this.tween = this.game.add.tween(this.old_number);
+        // this.tween.to({ x: [100], y: [200] }, 300, "Linear");
+        // this.tween.start();
+        this.new_number.Tween(200,200,300);
+        // this.tween2 = this.game.add.tween(this.new_number);
+        // this.tween2.to({ x: [200], y: [200] }, 300, "Linear");
+        // this.tween2.start();
     },
     higherAction:function(){
         console.log("higher");
